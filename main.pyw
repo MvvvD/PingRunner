@@ -21,7 +21,7 @@ def pinger():
     return response_code
 
 
-schedule.every(1).minute.do(pinger)
+schedule.every(5).minute.do(pinger)
 while True:
     schedule.run_pending()
     time.sleep(1)
