@@ -13,9 +13,11 @@ def pinger():
     response_code = requests.get(google).status_code
     if response_code >= 400:
         error_log = f'Code: {response_code} --- {time.strftime("%Y-%m-%d / %H:%M:%S")}\n'
-        print(error_log)
         with open('error_log.txt', 'a') as file:
             file.write(error_log)
+        #checks again in 15 seconds if status code is >=400 to track more or less downtimes
+        time.sleep(15)
+        pinger()
     return response_code
 
 
